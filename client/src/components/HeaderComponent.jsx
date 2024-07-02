@@ -117,7 +117,7 @@ export default function HeaderComponent() {
               <Dropdown.Item onClick={handleSignout}>Sign Out</Dropdown.Item>
             </Dropdown>
           ) : (
-            <Link to="/sign-in">
+            <Link to="/authentication?tab=sign-in">
               <Button gradientDuoTone="purpleToBlue" outline>
                 Sign In
               </Button>
@@ -132,7 +132,7 @@ export default function HeaderComponent() {
           <Navbar.Link active={path === "/publications"} as={"div"}>
             <Link to="/publications">Publications</Link>
           </Navbar.Link>
-          <Navbar.Link active={path === "/publications"} as={"div"}>
+          <Navbar.Link active={path === "/announcements"} as={"div"}>
             <Link to="/announcements">Announcements</Link>
           </Navbar.Link>
           <Navbar.Link active={path === "/messages"} as={"div"}>

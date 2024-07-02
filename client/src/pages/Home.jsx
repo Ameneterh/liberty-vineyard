@@ -163,7 +163,7 @@ export default function Home() {
               </p>
               <p className="flex items-center gap-2">
                 <GiClockwork className="h-4 w-4" />
-                9.00 am - 11.00 am
+                8.00 am - 10.00 am
               </p>
               <p className="flex items-start gap-2 w-full">
                 <MdOutlineDescription className="h-4 w-4" />
@@ -178,10 +178,10 @@ export default function Home() {
           <div className="flex items-center justify-center w-full sm:w-80 p-4 border rounded-xl shadow-lg">
             <div className="flex flex-col w-full gap-4">
               <GiTeacher className="w-10 h-10" />
-              <h1 className="uppercase text-2xl font-bold">army of the Lord</h1>
+              <h1 className="uppercase text-2xl font-bold">Time of Worship</h1>
               <p className="flex items-center gap-2">
                 <MdOutlineDateRange className="h-4 w-4" />
-                Every Monday
+                Every Wednesday
               </p>
               <p className="flex items-center gap-2">
                 <GiClockwork className="h-4 w-4" />
@@ -190,8 +190,7 @@ export default function Home() {
               <p className="flex items-start gap-2 w-full">
                 <MdOutlineDescription className="h-4 w-4" />
                 <span className="flex flex-1">
-                  A time of intense study of the Word of God anchored by our
-                  father in the Lord, Bishop Francis Wale Oke
+                  A time of intense worship and study of the Word of God.
                 </span>
               </p>
             </div>
@@ -204,7 +203,7 @@ export default function Home() {
               <h1 className="uppercase text-2xl font-bold">hour of prayer</h1>
               <p className="flex items-center gap-2">
                 <MdOutlineDateRange className="h-4 w-4" />
-                Every Wednesday
+                Every Friday
               </p>
               <p className="flex items-center gap-2">
                 <GiClockwork className="h-4 w-4" />

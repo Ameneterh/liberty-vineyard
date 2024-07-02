@@ -46,12 +46,12 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen mt-20">
+    <div className="min-h-screen mt-5">
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
         {/* left */}
         <div className="flex flex-col items-center flex-1 gap-8">
           <img
-            src="/thogheader.png"
+            src="/liberty_logo.png"
             alt="thog header"
             className="w-28 self-center"
           />
@@ -60,7 +60,7 @@ export default function SignIn() {
             className="font-semibold dark:text-white whitespace-nowrap text-lg sm:text-4xl  "
           >
             <span className="px-2 py-1 bg-gradient-to-r from-blue-950 via-cyan-800 to-blue-900 rounded-lg text-white dark:text-yellow-300 border-b border-red-700">
-              The House of Glory
+              Liberty Vineyard
             </span>
           </Link>
           <p className="text-sm mt-5 text-center">
@@ -109,7 +109,7 @@ export default function SignIn() {
             </form>
             <div className="flex gap-2 text-sm mt-5">
               <span>Dont have an account?</span>
-              <Link to="/sign-up" className="text-blue-500">
+              <Link to="/authentication?tab=sign-up" className="text-blue-500">
                 Sign Up
               </Link>
             </div>

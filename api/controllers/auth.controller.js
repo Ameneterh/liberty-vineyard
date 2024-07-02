@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 // signup api
 export const signup = async (req, res, next) => {
-  const { fullname, username, email, password } = req.body;
+  const { fullname, username, email, password, avatar } = req.body;
   if (
     !username ||
     !email ||
@@ -24,6 +24,7 @@ export const signup = async (req, res, next) => {
     username,
     email,
     password: hashedPassword,
+    avatar,
   });
 
   try {

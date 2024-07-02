@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "clc-houseofglory.firebaseapp.com",
-  projectId: "clc-houseofglory",
-  storageBucket: "clc-houseofglory.appspot.com",
-  messagingSenderId: "714446001687",
-  appId: "1:714446001687:web:3be9b4819bde2bb1aaee52",
+  apiKey: "AIzaSyDg3ugnbZPGCFoP6fHW_XK6TrTnAZzGfJk",
+  authDomain: "liberty-vineyard.firebaseapp.com",
+  projectId: "liberty-vineyard",
+  storageBucket: "liberty-vineyard.appspot.com",
+  messagingSenderId: "287271590927",
+  appId: "1:287271590927:web:3bea1c56db03854bcd977a",
 };
 
 // Initialize Firebase

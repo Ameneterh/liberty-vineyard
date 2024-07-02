@@ -20,6 +20,8 @@ import Search from "./pages/Search";
 import HeaderComponent from "./components/HeaderComponent";
 import Publications from "./pages/Publications";
 import AboutUs from "./pages/AboutUs";
+import AuthenticationPage from "./pages/AuthenticationPage";
+import Announcements from "./pages/Announcements";
 
 export default function App() {
   return (
@@ -29,14 +31,14 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/announcements" element={<Announcements />} />
         <Route path="/publications" element={<Publications />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/search" element={<Search />} />
         <Route path="/impact-missions" element={<ImpactMissionPage />} />
         <Route path="/view-video/:videoId" element={<ViewVideo />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/authentication" element={<AuthenticationPage />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
