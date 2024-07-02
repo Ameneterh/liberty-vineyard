@@ -2,16 +2,22 @@ import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema(
   {
-    userId: {
+    title: {
       type: String,
       required: true,
+      unique: true,
     },
-    postimage: {
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    image: {
       type: String,
       default:
-        "https://png.pngtree.com/png-vector/20220521/ourmid/pngtree-building-website-project-as-programming-homepage-process-tiny-person-vector-illustration-png-image_4658684.png",
+        "https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2021/09/how-to-write-a-blog-post.png",
     },
-    posttitle: {
+    content: {
       type: String,
       required: true,
     },
@@ -19,14 +25,9 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    postcontent: {
+    userId: {
       type: String,
       required: true,
-    },
-    slug: {
-      type: String,
-      required: true,
-      unique: true,
     },
   },
   { timestamps: true }

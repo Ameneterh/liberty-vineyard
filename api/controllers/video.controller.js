@@ -17,7 +17,7 @@ export const addvideo = async (req, res, next) => {
   }
   const newVideo = new Video({
     ...req.body,
-    userId: req.user.userId,
+    userId: req.user.id,
   });
 
   try {
@@ -66,43 +66,78 @@ export const getvideos = async (req, res, next) => {
   }
 };
 
-export const deleteproject = async (req, res, next) => {
-  if (req.user.userId !== req.params.userId) {
-    return next(
-      errorHandler(403, "YOu are not allowed to delete this Project")
-    );
-  }
+export const getVideoById = async (req, res, next) => {
   try {
-    await Project.findByIdAndDelete(req.params.projectId);
-    res
-      .status(200)
-      .json(`The project with id ${req.params.projectId} has been deleted`);
+    const video = await Video.findById(req.params.videoId);
+    if (!video) {
+      return next(errorHandler(404, "Data not found!"));
+    }
+    res.status(200).json(video);
   } catch (error) {
     next(error);
   }
 };
 
-export const updateproject = async (req, res, next) => {
+export const deletevideo = async (req, res, next) => {
+  if (!req.user.isAdmin && req.user.id !== req.params.userId) {
+    return next(
+      errorHandler(403, "You are not allowed to delete this Video entry")
+    );
+  }
+  try {
+    await Video.findByIdAndDelete(req.params.videoId);
+    res
+      .status(200)
+      .json(`The video entry with id ${req.params.videoId} has been deleted`);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updatevideo = async (req, res, next) => {
   console.log(req.user);
-  if (req.user.userId !== req.params.userId) {
-    return next(errorHandler(403, "You are not allowed to update this post"));
+  if (!req.user.isAdmin && req.user.id !== req.params.userId) {
+    return next(
+      errorHandler(403, "You are not allowed to update this video entry")
+    );
   }
 
   try {
-    const updatedProject = await Project.findByIdAndUpdate(
-      req.params.projectId,
+    const updatedVideo = await Video.findByIdAndUpdate(
+      req.params.videoId,
       {
         $set: {
-          projectimage: req.body.projectimage,
-          projectname: req.body.projectname,
-          description: req.body.description,
+          videotitle: req.body.videotitle,
+          videodescription: req.body.videodescription,
           category: req.body.category,
-          liveurl: req.body.liveurl,
+          videoId: req.body.videoId,
         },
       },
       { new: true }
     );
-    res.status(200).json(updatedProject);
+    res.status(200).json(updatedVideo);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const likeVideo = async (req, res, next) => {
+  try {
+    const video = await Video.findById(req.params.videoId);
+    if (!video) {
+      return next(errorHandler(404, "Requested video not found"));
+    }
+
+    const userIndex = video.likes.indexOf(req.user.userId);
+    if (userIndex === -1) {
+      video.numberOfLikes += 1;
+      video.likes.push(req.user.userId);
+    } else {
+      video.numberOfLikes -= 1;
+      video.likes.splice(userIndex, 1);
+    }
+    await video.save();
+    res.status(200).json(video);
   } catch (error) {
     next(error);
   }

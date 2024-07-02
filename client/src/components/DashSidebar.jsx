@@ -8,10 +8,6 @@ import {
   HiOutlineUserGroup,
   HiUser,
 } from "react-icons/hi";
-import { TbMessage } from "react-icons/tb";
-import { MdTextsms } from "react-icons/md";
-import { RiVideoAddLine } from "react-icons/ri";
-
 import { Link, useLocation } from "react-router-dom";
 import { signOutSuccess } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
@@ -33,7 +29,7 @@ export default function DashSidebar() {
 
   const handleSignout = async () => {
     try {
-      const res = await fetch("/api/user/logout", {
+      const res = await fetch("/api/user/signout", {
         method: "POST",
       });
       const data = await res.json();
@@ -85,43 +81,6 @@ export default function DashSidebar() {
               </Sidebar.Item>
             </Link>
           )}
-
-          {currentUser.isAdmin && (
-            <Link to="/dashboard?tab=health-talks">
-              <Sidebar.Item
-                active={tab === "health-talks"}
-                icon={RiVideoAddLine}
-                as="div"
-              >
-                Health Talks
-              </Sidebar.Item>
-            </Link>
-          )}
-
-          {currentUser.isAdmin && (
-            <Link to="/dashboard?tab=motivationals">
-              <Sidebar.Item
-                active={tab === "motivationals"}
-                icon={MdTextsms}
-                as="div"
-              >
-                Motivationals
-              </Sidebar.Item>
-            </Link>
-          )}
-
-          {currentUser.isAdmin && (
-            <Link to="/dashboard?tab=messages">
-              <Sidebar.Item
-                active={tab === "messages"}
-                icon={TbMessage}
-                as="div"
-              >
-                Messages
-              </Sidebar.Item>
-            </Link>
-          )}
-
           {currentUser.isAdmin && (
             <>
               <Link to="/dashboard?tab=users">
@@ -144,14 +103,12 @@ export default function DashSidebar() {
               </Link>
             </>
           )}
-
-          {/* signout */}
           <Sidebar.Item
             icon={HiArrowSmRight}
             className="cursor-pointer"
             onClick={handleSignout}
           >
-            Log Out
+            Sign Out
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>

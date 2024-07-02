@@ -18,27 +18,26 @@ export default function UpdatePost() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
-
+  const { currentUser } = useSelector((state) => state.user);
+  const { postId } = useParams();
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const { currentUser } = useSelector((state) => state.user);
-  const { postId } = useParams();
   const navigate = useNavigate();
+
+  console.log(formData._id);
 
   useEffect(() => {
     try {
       const fetchPost = async () => {
-        const res = await fetch(`/api/content/getposts?postId=${postId}`);
+        const res = await fetch(`/api/post/getposts?postId=${postId}`);
         const data = await res.json();
-
         if (!res.ok) {
           console.log(data.message);
           setPublishError(data.message);
           return;
         }
-
         if (res.ok) {
           setPublishError(null);
           setFormData(data.posts[0]);
@@ -76,7 +75,7 @@ export default function UpdatePost() {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setImageUploadProgress(null);
             setImageUploadError(null);
-            setFormData({ ...formData, projectimage: downloadURL });
+            setFormData({ ...formData, image: downloadURL });
           });
         }
       );
@@ -89,10 +88,9 @@ export default function UpdatePost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const res = await fetch(
-        `/api/content/updatepost/${postId}/${currentUser._id}`,
+        `/api/post/updatepost/${postId}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {
@@ -116,60 +114,51 @@ export default function UpdatePost() {
   };
 
   return (
-    <div className="p-3 max-w-3xl mb-10 mx-auto min-h-screen">
+    <div className="p-3 max-w-3xl mx-auto min-h-screen mb-10">
       <h1 className="text-center text-3xl my-7 font-semibold">Update Post</h1>
 
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <div className="flex gap-4 items-center justify-between border-2 border-purple-500 p-3 rounded-lg">
-          <FileInput
-            type="file"
-            accept="image/*"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          <Button
-            type="button"
-            gradientDuoTone="purpleToBlue"
-            size="sm"
-            outline
-            onClick={handleUploadImage}
-            disabled={imageUploadProgress}
-          >
-            {imageUploadProgress ? (
-              <div className="w-16 h-16">
-                <CircularProgressbar
-                  value={imageUploadProgress}
-                  text={`${imageUploadProgress || 0}%`}
-                />
-              </div>
-            ) : (
-              "Upload Image"
-            )}
-          </Button>
-        </div>
-        {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
-
-        {formData.postimage && (
-          <img
-            src={formData.postimage}
-            alt="upload"
-            className="w-full, h-72 object-cover"
-          />
-        )}
-
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
             type="text"
-            placeholder="Project Name"
+            placeholder="Title"
             required
-            id="projectname"
+            id="title"
             className="flex-1"
-            value={formData.posttitle}
+            value={formData.title}
             onChange={(e) =>
-              setFormData({ ...formData, posttitle: e.target.value })
+              setFormData({ ...formData, title: e.target.value })
             }
           />
+        </div>
+        <div className="flex gap-4 items-center justify-between rounded-lg">
+          <div className="flex flex-1 gap-4 items-center justify-between border-2 border-teal-500 p-3 rounded-lg">
+            <FileInput
+              type="file"
+              accept="image/*"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+            <Button
+              type="button"
+              gradientDuoTone="purpleToBlue"
+              size="sm"
+              outline
+              onClick={handleUploadImage}
+              disabled={imageUploadProgress}
+            >
+              {imageUploadProgress ? (
+                <div className="w-16 h-16">
+                  <CircularProgressbar
+                    value={imageUploadProgress}
+                    text={`${imageUploadProgress || 0}%`}
+                  />
+                </div>
+              ) : (
+                "Upload Image"
+              )}
+            </Button>
+          </div>
           <Select
-            value={formData.category}
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -182,27 +171,36 @@ export default function UpdatePost() {
           </Select>
         </div>
 
+        {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
+
+        {formData.downloadfile && (
+          <Alert color="success">Upload Completed successfully</Alert>
+        )}
+
+        {formData.image && (
+          <img
+            src={formData.image}
+            alt="upload"
+            className="w-full, h-72 object-cover"
+          />
+        )}
+
         <ReactQuill
           theme="snow"
           placeholder="Write something ..."
           className="h-72 mb-12"
           required
           onChange={(value) => {
-            setFormData({ ...formData, postcontent: value });
+            setFormData({ ...formData, content: value });
           }}
-          value={formData.postcontent}
+          value={formData.content}
         />
 
-        <Button
-          gradientDuoTone="purpleToPink"
-          outline
-          type="submit"
-          disabled={loading}
-        >
+        <Button type="submit" gradientDuoTone="purpleToPink" disabled={loading}>
           {loading ? (
             <>
               <Spinner size="sm" />
-              <span className="pl-3">Updating Post ...</span>
+              <span className="pl-3">Updating, please wait ...</span>
             </>
           ) : (
             "Update Post"

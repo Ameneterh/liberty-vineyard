@@ -3,13 +3,10 @@ import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import DashSidebar from "../components/DashSidebar";
 import DashProfile from "../components/DashProfile";
-import DashboardComponent from "../components/DashboardComponent";
 import DashPosts from "../components/DashPosts";
-import DashMessages from "../components/DashMessages";
 import DashUsers from "../components/DashUsers";
 import DashComments from "../components/DashComments";
-import DashMotivational from "../components/DashMotivational";
-import DashHealthTalks from "../components/DashHealthTalks";
+import DashboardComponent from "../components/DashboardComponent";
 
 export default function Dashboard() {
   const location = useLocation();
@@ -33,26 +30,17 @@ export default function Dashboard() {
       {/* profile ... */}
       {tab === "profile" && <DashProfile />}
 
-      {/* for dashboard */}
-      {tab === "dash" && <DashboardComponent />}
-
-      {/* for post */}
+      {/* for posts */}
       {tab === "posts" && <DashPosts />}
 
-      {/* for health talks */}
-      {tab === "health-talks" && <DashHealthTalks />}
-
-      {/* for motivationals */}
-      {tab === "motivationals" && <DashMotivational />}
-
-      {/* for messages */}
-      {/* {tab === "messages" && <DashMessages />} */}
-
-      {/* for post */}
+      {/* for users */}
       {tab === "users" && <DashUsers />}
 
-      {/* for post */}
+      {/* for comments */}
       {tab === "comments" && <DashComments />}
+
+      {/* for dashboard */}
+      {tab === "dash" && <DashboardComponent />}
     </div>
   );
 }

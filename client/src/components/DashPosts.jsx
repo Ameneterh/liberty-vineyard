@@ -37,7 +37,7 @@ export default function DashPosts() {
     if (currentUser.isAdmin) {
       fetchPosts();
     } else {
-      navigate("/login");
+      navigate("/sign-in");
     }
   }, [currentUser._id]);
 
@@ -98,14 +98,14 @@ export default function DashPosts() {
               <Table.Body className="divide-y" key={post._id}>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                   <Table.Cell>
-                    {new Date(post.createdAt).toLocaleDateString()}
+                    {new Date(post.updatedAt).toLocaleDateString()}
                   </Table.Cell>
                   <Table.Cell>
                     <Link to={`/posts/${post.slug}`}>
                       <img
-                        src={post.postimage}
-                        alt={post.posttitle}
-                        className="w-20 h-10 object-cover object-top bg-gray-500"
+                        src={post.image}
+                        alt={post.title}
+                        className="w-20 h-10 object-cover bg-gray-500"
                       />
                     </Link>
                   </Table.Cell>
@@ -114,7 +114,7 @@ export default function DashPosts() {
                       className="font-medium text-gray-900 dark:text-white"
                       to={`/posts/${post.slug}`}
                     >
-                      {post.posttitle}
+                      {post.title}
                     </Link>
                   </Table.Cell>
                   <Table.Cell>{post.category}</Table.Cell>

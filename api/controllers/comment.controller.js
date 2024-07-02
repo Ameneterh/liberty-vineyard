@@ -5,7 +5,7 @@ export const createComment = async (req, res, next) => {
   try {
     const { content, postId, userId } = req.body;
 
-    if (userId !== req.user.userId) {
+    if (userId !== req.user.id) {
       return next(
         errorHandler(403, "You are not allowed to create this comment")
       );
@@ -63,7 +63,7 @@ export const editComment = async (req, res, next) => {
     if (!comment) {
       return next(errorHandler(404, "Comment not found"));
     }
-    if (comment.userId !== req.user.userId && !req.user.isAdmin) {
+    if (comment.userId !== req.user.id && !req.user.isAdmin) {
       return next(
         errorHandler(403, "YOu are not allowed to edit this comment")
       );
@@ -85,7 +85,7 @@ export const deleteComment = async (req, res, next) => {
     if (!comment) {
       return next(errorHandler(404, "Comment not found"));
     }
-    if (comment.userId !== req.user.userId && !req.user.isAdmin) {
+    if (comment.userId !== req.user.id && !req.user.isAdmin) {
       return next(
         errorHandler(403, "You are not allowed to delete this comment")
       );
@@ -98,8 +98,8 @@ export const deleteComment = async (req, res, next) => {
 };
 
 export const getComments = async (req, res, next) => {
-  // if (!req.user.isAdmin)
-  //   return next(errorHandler(403, "You are not allowed to get all comments"));
+  if (!req.user.isAdmin)
+    return next(errorHandler(403, "You are not allowed to get all comments"));
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 10;

@@ -1,6 +1,4 @@
-import { Alert, Button, FileInput, Spinner, TextInput } from "flowbite-react";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { TextInput, FileInput, Button, Alert } from "flowbite-react";
 import {
   getDownloadURL,
   getStorage,
@@ -10,18 +8,26 @@ import {
 import { app } from "../firebase.js";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useNavigate } from "react-router-dom";
+
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import OAuth from "../components/OAuth.jsx";
 
 export default function SignUp() {
+  const [formData, setFormData] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
 
-  const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  console.log(file);
+  console.log(formData);
 
-  // upload image functionality
+  // for image upload
   const handleUploadImage = async () => {
     try {
       if (!file) {
@@ -48,7 +54,7 @@ export default function SignUp() {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setImageUploadProgress(null);
             setImageUploadError(null);
-            setFormData({ ...formData, avatar: downloadURL });
+            setFormData({ ...formData, image: downloadURL });
           });
         }
       );
@@ -60,123 +66,168 @@ export default function SignUp() {
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      !formData.fullname ||
+      !formData.username ||
+      !formData.email ||
+      !formData.password
+    ) {
+      return setErrorMessage("Please fill out all mandatory fields");
+    }
 
     try {
       setLoading(true);
+      setErrorMessage(null);
       const res = await fetch("/api/auth/signup", {
         method: "POST",
-        headers: { "content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+
       if (data.success === false) {
-        setLoading(false);
-        setError(data.message);
-        return;
+        return setErrorMessage(data.message);
       }
       setLoading(false);
-      setError(null);
-      navigate("/login");
+      if (res.ok) {
+        navigate("/sign-in");
+      }
     } catch (error) {
+      setErrorMessage(data.message);
       setLoading(false);
-      setError(error.message);
     }
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
-      <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted mb-4 p-3 rounded-lg">
-        <FileInput
-          type="file"
-          accept="image/*"
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-        <Button
-          type="button"
-          gradientDuoTone="purpleToBlue"
-          size="sm"
-          outline
-          onClick={handleUploadImage}
-          disabled={imageUploadProgress}
-        >
-          {imageUploadProgress ? (
-            <div className="w-16 h-16">
-              <CircularProgressbar
-                value={imageUploadProgress}
-                text={`${imageUploadProgress || 0}%`}
+    <div className="min-h-screen my-10">
+      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row gap-8 md:items-center">
+        {/* left side */}
+        <div className="flex flex-col items-center flex-1 gap-8">
+          <img
+            src="/thogheader.png"
+            alt="thog header"
+            className="w-28 self-center"
+          />
+          <Link
+            to="/"
+            className="font-semibold dark:text-white whitespace-nowrap text-lg sm:text-4xl  "
+          >
+            <span className="px-2 py-1 bg-gradient-to-r from-blue-950 via-cyan-800 to-blue-900 rounded-lg text-white dark:text-yellow-300 border-b border-red-700">
+              The House of Glory
+            </span>
+          </Link>
+          <p className="text-sm mt-5 text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam.
+          </p>
+        </div>
+
+        {/* right side */}
+        <div className="flex-1 border p-4 rounded-xl shadow-xl">
+          <h1 className="mb-8 text-center text-2xl font-bold">Sign Up</h1>
+          <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+            <p className="text-[12px] text-red-600 mb-[-10px]">
+              All fields are mandatory
+            </p>
+            <div className="flex gap-4 items-center justify-between rounded-lg">
+              <FileInput
+                type="file"
+                accept="image/*"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+              <Button
+                type="button"
+                gradientDuoTone="purpleToBlue"
+                size="sm"
+                outline
+                onClick={handleUploadImage}
+                disabled={imageUploadProgress}
+              >
+                {imageUploadProgress ? (
+                  <div className="w-16 h-16">
+                    <CircularProgressbar
+                      value={imageUploadProgress}
+                      text={`${imageUploadProgress || 0}%`}
+                    />
+                  </div>
+                ) : (
+                  "Upload"
+                )}
+              </Button>
+            </div>
+
+            {formData.image && (
+              <img
+                src={formData.image}
+                alt="upload"
+                className="w-full, h-72 object-cover rounded-xl"
+              />
+            )}
+
+            <div className="">
+              {/* <Label value="Your full name" /> */}
+              <TextInput
+                type="text"
+                placeholder="Your full name"
+                id="fullname"
+                onChange={handleChange}
               />
             </div>
-          ) : (
-            "Upload Image"
+            <div className="">
+              {/* <Label value="Your username" /> */}
+              <TextInput
+                type="text"
+                placeholder="Your username"
+                id="username"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="">
+              {/* <Label value="Your email" /> */}
+              <TextInput
+                type="email"
+                placeholder="Your email"
+                id="email"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="">
+              {/* <Label value="Your password" /> */}
+              <TextInput
+                type="password"
+                placeholder="Your password"
+                id="password"
+                onChange={handleChange}
+              />
+            </div>
+
+            <Button gradientDuoTone="purpleToPink" type="submit">
+              SIGN UP
+            </Button>
+
+            <OAuth />
+          </form>
+
+          <div className="flex gap-2 text-sm mt-5">
+            <span>Have an account?</span>
+            <Link
+              to="/sign-in"
+              className="text-blue-500 hover:underline underline-offset-4"
+            >
+              Sign In
+            </Link>
+          </div>
+          {errorMessage && (
+            <Alert color="failure" className="mt-5">
+              {errorMessage}
+            </Alert>
           )}
-        </Button>
+        </div>
       </div>
-      {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
-
-      {formData.downloadfile && (
-        <Alert color="success">Upload Completed successfully</Alert>
-      )}
-
-      {formData.avatar && (
-        <img
-          src={formData.avatar}
-          alt="upload"
-          className="w-full, h-72 object-cover"
-        />
-      )}
-
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <TextInput
-          type="text"
-          placeholder="Your Full Name"
-          id="fullname"
-          onChange={handleChange}
-        />
-        <TextInput
-          type="email"
-          placeholder="name@company.com"
-          id="email"
-          onChange={handleChange}
-        />
-        <TextInput
-          type="password"
-          placeholder="password"
-          id="password"
-          onChange={handleChange}
-        />
-
-        <Button
-          disabled={loading}
-          outline
-          gradientDuoTone="purpleToBlue"
-          type="submit"
-        >
-          {loading ? (
-            <>
-              <Spinner size="sm" />
-              <span className="pl-3">Registering, please wait ...</span>
-            </>
-          ) : (
-            "Sign Up"
-          )}
-        </Button>
-      </form>
-      <div className="flex gap-2 mt-5">
-        <p>Have an account?</p>
-        <Link to="/login">
-          <span className="text-blue-700 hover:underline">Login</span>
-        </Link>
-      </div>
-      {error && <p className="text-red-500 mt-5">{error}</p>}
     </div>
   );
 }

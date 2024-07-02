@@ -6,11 +6,11 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "ameneterh-portfolio.firebaseapp.com",
-  projectId: "ameneterh-portfolio",
-  storageBucket: "ameneterh-portfolio.appspot.com",
-  messagingSenderId: "756247850318",
-  appId: "1:756247850318:web:2b8668566179d3d35ac21f",
+  authDomain: "clc-houseofglory.firebaseapp.com",
+  projectId: "clc-houseofglory",
+  storageBucket: "clc-houseofglory.appspot.com",
+  messagingSenderId: "714446001687",
+  appId: "1:714446001687:web:3be9b4819bde2bb1aaee52",
 };
 
 // Initialize Firebase

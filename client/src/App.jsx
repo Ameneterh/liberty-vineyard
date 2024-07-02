@@ -1,47 +1,53 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import Header from "./components/Header";
-import ContactPage from "./pages/ContactPage";
+import PrivateRoutes from "./components/PrivateRoutes";
+import OnlyAdminPrivateRoutes from "./components/OnlyAdminPrivateRoutes";
+import ScrollToTop from "./components/ScrollToTop";
+import FooterCom from "./components/FooterCom";
+import Home from "./pages/Home";
+import ContactUs from "./pages/ContactUs";
+import Messages from "./pages/Messages";
 import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
-import PrivateRoute from "./components/PrivateRoute";
+import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dashboard";
+import CreatePost from "./pages/CreatePost";
+import PostPage from "./pages/PostPage";
 import UpdatePost from "./pages/UpdatePost";
-import ArticlesPage from "./pages/ArticlesPage";
-import HealthTalksPage from "./pages/HealthTalksPage";
-import AddContent from "./pages/AddContent";
-import PostView from "./pages/PostView";
-import MotivationalsPage from "./pages/MotivationalsPage";
-import ViewMotivational from "./pages/ViewMotivational";
-import AdminOnlyRoutes from "./components/AdminOnlyRoutes";
+import CreateContent from "./pages/CreateContent";
+import ViewVideo from "./pages/ViewVideo";
+import ImpactMissionPage from "./pages/ImpactMissionPage";
+import Search from "./pages/Search";
+import HeaderComponent from "./components/HeaderComponent";
+import Publications from "./pages/Publications";
+import AboutUs from "./pages/AboutUs";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
-      <Header />
+      <ScrollToTop />
+      <HeaderComponent />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/posts" element={<ArticlesPage />} />
-        <Route path="/health-talks" element={<HealthTalksPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/motivationals" element={<MotivationalsPage />} />
-        <Route
-          path="/motivationals/:motivationId"
-          element={<ViewMotivational />}
-        />
-        <Route path="/posts/:slug" element={<PostView />} />
-        <Route element={<PrivateRoute />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/publications" element={<Publications />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/impact-missions" element={<ImpactMissionPage />} />
+        <Route path="/view-video/:videoId" element={<ViewVideo />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
-        <Route element={<AdminOnlyRoutes />}>
-          <Route path="/add-content" element={<AddContent />} />
+        <Route element={<OnlyAdminPrivateRoutes />}>
+          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/create-content" element={<CreateContent />} />
           <Route path="/update-post/:postId" element={<UpdatePost />} />
         </Route>
+        <Route path="/posts/:postSlug" element={<PostPage />} />
       </Routes>
+      <FooterCom />
     </BrowserRouter>
   );
 }
-
-export default App;
