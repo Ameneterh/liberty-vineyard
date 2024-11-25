@@ -176,7 +176,7 @@ export default function AboutUs() {
           </div>
         </div>
 
-        <div className="w-full">
+        {/* <div className="w-full">
           <div className="w-full max-w-5xl mx-auto p-3 md:p-10 flex flex-col mb-10 md:mb-20">
             <h2 className="uppercase text-2xl md:text-4xl font-extrabold text-center w-full mb-3 md:mb-16">
               THE BENEFITS OF <span className="block">JOINING OUR CHURCH</span>
@@ -259,10 +259,10 @@ export default function AboutUs() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Meet Team Members */}
-        <div className="py-10 bg-slate-200 dark:bg-slate-800">
+        {/* <div className="py-10 bg-slate-200 dark:bg-slate-800">
           <h2 className="uppercase text-2xl md:text-4xl font-extrabold text-center w-full mb-3 md:mb-16">
             meet our inspirational team
           </h2>
@@ -308,7 +308,7 @@ export default function AboutUs() {
               memberPosition="Title"
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

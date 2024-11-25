@@ -60,7 +60,7 @@ export default function Announcements() {
       <div className="max-w-6xl mx-auto flex flex-col gap-8 py-7 justify-center items-center">
         <MdOutlineConstruction className="mt-20 text-[200px]" />
         <h1 className="w-full text-center text-2xl md:text-7xl">
-          Page Under Construction
+          Write the Vision & Annual Thanksgiving
         </h1>
         {/* {posts && posts.length > 0 ? (
           <>

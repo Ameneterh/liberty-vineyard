@@ -7,8 +7,11 @@ import { FaPlaceOfWorship } from "react-icons/fa";
 import herocover from "/homehero.png";
 import ImpactMission from "../components/ImpactMission";
 import Typewriter from "typewriter-effect";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col">
       <div
@@ -50,16 +53,21 @@ export default function Home() {
             <div className="flex flex-col w-full  gap-4">
               <div className="w-10 h-10 rounded-full bg-black"></div>
               <h1 className="uppercase text-2xl font-bold">about us</h1>
-              <p className="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deserunt tempore accusantium recusandae est aspernatur eaque
-                eligendi, cupiditate, voluptate fugiat deleniti repellat
-                eveniet. Delectus quo quis quidem nostrum illum sit id.
+              <p className="line-clamp-6">
+                Liberty Vineyard Ministry, a relatively young but vibrant and
+                growing church has a publishing arm (Vineyard Publications) in
+                addition to the traditional role of dispensing the Word which
+                saves the sinner, the oppressed, the bonded etc . This arm of
+                the Ministry has to its credit several published books (details
+                in BOOKS/MESSAGES), a bi-monthly digest (details in VINEYARD
+                VOICE) as well as several messages on CD (details in
+                BOOKS/MESSAGES) and many more to come.
               </p>
               <Button
                 className="uppercase"
                 outline
                 gradientDuoTone="purpleToPink"
+                onClick={() => navigate("/about")}
               >
                 know more
               </Button>
@@ -88,7 +96,7 @@ export default function Home() {
           </div>
 
           {/* giving back */}
-          <div className="flex items-center justify-center w-full sm:w-80 p-4 border rounded-xl shadow-lg">
+          {/* <div className="flex items-center justify-center w-full sm:w-80 p-4 border rounded-xl shadow-lg">
             <div className="flex flex-col w-full  gap-4">
               <div className="w-10 h-10 rounded-full bg-black"></div>
               <h1 className="uppercase text-2xl font-bold">giving back</h1>
@@ -106,7 +114,7 @@ export default function Home() {
                 find details
               </Button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -149,72 +157,190 @@ export default function Home() {
           Be a part of our life transforming services
         </p>
 
-        <div className="flex flex-wrap gap-8 justify-center mt-6 relative">
-          {/* Sunday Service */}
-          <div className="flex items-center justify-center w-full sm:w-80 p-4 border rounded-xl shadow-lg">
-            <div className="flex flex-col w-full gap-4">
-              <FaPlaceOfWorship className="w-10 h-10" />
-              <h1 className="uppercase text-2xl font-bold">
-                Sunday Power Service
-              </h1>
-              <p className="flex items-center gap-2">
-                <MdOutlineDateRange className="h-4 w-4" />
-                Every Sunday
-              </p>
-              <p className="flex items-center gap-2">
-                <GiClockwork className="h-4 w-4" />
-                8.00 am - 10.00 am
-              </p>
-              <p className="flex items-start gap-2 w-full">
-                <MdOutlineDescription className="h-4 w-4" />
-                <span className="flex flex-1">
-                  A time to worship the Lord, feed on His Word and enjoy
-                  communion and fellowship with other believers.
-                </span>
-              </p>
+        <div className="flex flex-col md:flex-row gap-8 mt-6 relative">
+          {/* for headquarter branch */}
+          <div className="flex gap-5 flex-col flex-1">
+            <h1 className="font-extrabold text-2xl flex items-center gap-2">
+              For the Headquarter Church{" "}
+              <div className="h-[1px] flex-1 bg-gray-500"></div>
+            </h1>
+
+            {/* Sunday Service */}
+            <div className="flex flex-col w-full p-4 border rounded-xl shadow-lg">
+              <div className="flex flex-col w-full gap-4">
+                <h1 className="uppercase text-2xl font-bold flex items-end gap-3">
+                  <FaPlaceOfWorship className="w-10 h-10" />
+                  Sunday Power Service
+                </h1>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col gap-2 flex-1">
+                    <p className="flex items-center gap-2">
+                      <MdOutlineDateRange className="h-4 w-4" />
+                      Every Sunday
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <GiClockwork className="h-4 w-4" />
+                      8.00 am - 10.00 am
+                    </p>
+                  </div>
+                  <p className="flex items-start gap-2 w-full flex-1">
+                    <MdOutlineDescription className="h-4 w-4" />
+                    <span className="flex flex-1">
+                      A time to worship the Lord, feed on His Word and enjoy
+                      communion and fellowship with other believers.
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-          {/* army of the Lord */}
-          <div className="flex items-center justify-center w-full sm:w-80 p-4 border rounded-xl shadow-lg">
-            <div className="flex flex-col w-full gap-4">
-              <GiTeacher className="w-10 h-10" />
-              <h1 className="uppercase text-2xl font-bold">Time of Worship</h1>
-              <p className="flex items-center gap-2">
-                <MdOutlineDateRange className="h-4 w-4" />
-                Every Wednesday
-              </p>
-              <p className="flex items-center gap-2">
-                <GiClockwork className="h-4 w-4" />
-                5.30 pm - 7.00 pm
-              </p>
-              <p className="flex items-start gap-2 w-full">
-                <MdOutlineDescription className="h-4 w-4" />
-                <span className="flex flex-1">
-                  A time of intense worship and study of the Word of God.
-                </span>
-              </p>
+
+            {/* army of the Lord */}
+            <div className="flex items-center justify-center w-full p-4 border rounded-xl shadow-lg">
+              <div className="flex flex-col w-full gap-4">
+                <h1 className="uppercase text-2xl font-bold flex items-end gap-3">
+                  <GiTeacher className="w-10 h-10" />
+                  Time of Worship
+                </h1>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col gap-2 flex-1">
+                    <p className="flex items-center gap-2">
+                      <MdOutlineDateRange className="h-4 w-4" />
+                      Every Wednesday
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <GiClockwork className="h-4 w-4" />
+                      5.30 pm - 7.00 pm
+                    </p>
+                  </div>
+                  <p className="flex items-start gap-2 w-full flex-1">
+                    <MdOutlineDescription className="h-4 w-4" />
+                    <span className="flex flex-1">
+                      A time of intense worship and study of the Word of God.
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* hour of prayer */}
+            <div className="flex items-center justify-center w-full p-4 border rounded-xl shadow-lg">
+              <div className="flex flex-col w-full gap-4">
+                <h1 className="uppercase text-2xl font-bold flex items-end gap-3">
+                  <GiPrayer className="w-10 h-10" />
+                  hour of prayer
+                </h1>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col gap-2 flex-1">
+                    <p className="flex items-center gap-2">
+                      <MdOutlineDateRange className="h-4 w-4" />
+                      Every Friday
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <GiClockwork className="h-4 w-4" />
+                      5.00 pm - 6.00 pm
+                    </p>
+                  </div>
+                  <p className="flex items-start gap-2 w-full flex-1">
+                    <MdOutlineDescription className="h-4 w-4" />
+                    <span className="flex flex-1">
+                      One hour of intense communion with the Father in prayer.
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* hour of prayer */}
-          <div className="flex items-center justify-center w-full sm:w-80 p-4 border rounded-xl shadow-lg">
-            <div className="flex flex-col w-full gap-4">
-              <GiPrayer className="w-10 h-10" />
-              <h1 className="uppercase text-2xl font-bold">hour of prayer</h1>
-              <p className="flex items-center gap-2">
-                <MdOutlineDateRange className="h-4 w-4" />
-                Every Friday
-              </p>
-              <p className="flex items-center gap-2">
-                <GiClockwork className="h-4 w-4" />
-                5.00 pm - 6.00 pm
-              </p>
-              <p className="flex items-start gap-2 w-full">
-                <MdOutlineDescription className="h-4 w-4" />
-                <span className="flex flex-1">
-                  One hour of intense communion with the Father in prayer.
-                </span>
-              </p>
+          {/* for agyeita branch */}
+          <div className="flex gap-5 flex-col flex-1">
+            <h1 className="font-extrabold text-2xl flex items-center gap-2">
+              For the Headquarter Church{" "}
+              <div className="h-[1px] flex-1 bg-gray-500"></div>
+            </h1>
+
+            {/* Sunday Service */}
+            <div className="flex flex-col w-full p-4 border rounded-xl shadow-lg">
+              <div className="flex flex-col w-full gap-4">
+                <h1 className="uppercase text-2xl font-bold flex items-end gap-3">
+                  <FaPlaceOfWorship className="w-10 h-10" />
+                  Sunday Power Service
+                </h1>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col gap-2 flex-1">
+                    <p className="flex items-center gap-2">
+                      <MdOutlineDateRange className="h-4 w-4" />
+                      Every Sunday
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <GiClockwork className="h-4 w-4" />
+                      8.00 am - 10.00 am
+                    </p>
+                  </div>
+                  <p className="flex items-start gap-2 w-full flex-1">
+                    <MdOutlineDescription className="h-4 w-4" />
+                    <span className="flex flex-1">
+                      A time to worship the Lord, feed on His Word and enjoy
+                      communion and fellowship with other believers.
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* hour of prayer */}
+            <div className="flex items-center justify-center w-full p-4 border rounded-xl shadow-lg">
+              <div className="flex flex-col w-full gap-4">
+                <h1 className="uppercase text-2xl font-bold flex items-end gap-3">
+                  <GiPrayer className="w-10 h-10" />
+                  hour of prayer
+                </h1>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col gap-2 flex-1">
+                    <p className="flex items-center gap-2">
+                      <MdOutlineDateRange className="h-4 w-4" />
+                      Every Tuesday
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <GiClockwork className="h-4 w-4" />
+                      5.00 pm - 6.00 pm
+                    </p>
+                  </div>
+                  <p className="flex items-start gap-2 w-full flex-1">
+                    <MdOutlineDescription className="h-4 w-4" />
+                    <span className="flex flex-1">
+                      One hour of intense communion with the Father in prayer.
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* army of the Lord */}
+            <div className="flex items-center justify-center w-full p-4 border rounded-xl shadow-lg">
+              <div className="flex flex-col w-full gap-4">
+                <h1 className="uppercase text-2xl font-bold flex items-end gap-3">
+                  <GiTeacher className="w-10 h-10" />
+                  Time of Worship
+                </h1>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col gap-2 flex-1">
+                    <p className="flex items-center gap-2">
+                      <MdOutlineDateRange className="h-4 w-4" />
+                      Every Thursday
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <GiClockwork className="h-4 w-4" />
+                      5.30 pm - 7.00 pm
+                    </p>
+                  </div>
+                  <p className="flex items-start gap-2 w-full flex-1">
+                    <MdOutlineDescription className="h-4 w-4" />
+                    <span className="flex flex-1">
+                      A time of intense worship and study of the Word of God.
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

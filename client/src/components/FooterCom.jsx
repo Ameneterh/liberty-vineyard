@@ -27,37 +27,76 @@ export default function FooterCom() {
                 Liberty Vineyard
               </span>
             </Link>
-            <div className="hidden md:flex md:flex-col h-full gap-2 px-2 py-4 w-96">
-              <p className="text-sm text-slate-800 dark:text-slate-200">
+            <div className="flex md:flex-col h-full gap-2 px-2 py-4 w-[450px]">
+              <div className="flex gap-4">
+                {/* headquarters address */}
+                <div className="flex flex-col gap-3 items-start flex-1">
+                  <div className="text-sm text-slate-800 dark:text-slate-200">
+                    <h1 className="font-bold">Headquarters:</h1>
+                    <p>
+                      No 1, Liberty StreetL, by Federal Housing Estate,
+                      <br /> Karatudu, Goni Gora, Kaduna, Kaduna State.
+                    </p>
+                  </div>
+                  <div className="text-sm text-slate-800 dark:text-slate-200">
+                    <p className="flex gap-2 items-center">
+                      <MdMarkEmailRead />
+                      <Link
+                        to="mailto:libertyemail@gmail.com"
+                        className="hover:text-blue-600 hover:underline underline-offset-2"
+                      >
+                        libertyvineyard@email.com
+                      </Link>
+                    </p>
+                    <p className="flex gap-2 items-center">
+                      <MdAddCall />
+                      <Link
+                        to="mailto:libertyemail@gmail.com"
+                        className="hover:text-blue-600 hover:underline underline-offset-2"
+                      >
+                        +234803 704 2960
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+
+                {/* agyeita branch address */}
+                <div className="flex flex-col gap-3 items-start flex-1">
+                  <div className="text-sm text-slate-800 dark:text-slate-200">
+                    <h1 className="font-bold">Agyeita Branch:</h1>
+                    <p>
+                      14B, Marwa Street, Agyeita,
+                      <br />
+                      Kaduna, Kaduna State.
+                    </p>
+                  </div>
+                  {/* <div className="text-sm text-slate-800 dark:text-slate-200">
+                    <p className="flex gap-2 items-center">
+                      <MdMarkEmailRead />
+                      <Link
+                        to="mailto:libertyemail@gmail.com"
+                        className="hover:text-blue-600 hover:underline underline-offset-2"
+                      >
+                        libertyvineyard@email.com
+                      </Link>
+                    </p>
+                    <p className="flex gap-2 items-center">
+                      <MdAddCall />
+                      <Link
+                        to="mailto:libertyemail@gmail.com"
+                        className="hover:text-blue-600 hover:underline underline-offset-2"
+                      >
+                        +234803 704 2960
+                      </Link>
+                    </p>
+                  </div> */}
+                </div>
+              </div>
+
+              {/* <p className="text-sm text-slate-800 dark:text-slate-200 inline-block">
                 &copy; {new Date().getFullYear()}{" "}
                 <span className="font-bold">Liberty Vineyard Ministries</span>
-              </p>
-              <div className="text-sm text-slate-800 dark:text-slate-200">
-                <p>
-                  No 1, Liberty StreetL, by Federal Housing Estate,
-                  <br /> Karatudu, Goni Gora, Kaduna, Kaduna State.
-                </p>
-              </div>
-              <div className="text-sm text-slate-800 dark:text-slate-200">
-                <p className="flex gap-2 items-center">
-                  <MdMarkEmailRead />
-                  <Link
-                    to="mailto:libertyemail@gmail.com"
-                    className="hover:text-blue-600 hover:underline underline-offset-2"
-                  >
-                    libertyvineyard@email.com
-                  </Link>
-                </p>
-                <p className="flex gap-2 items-center">
-                  <MdAddCall />
-                  <Link
-                    to="mailto:libertyemail@gmail.com"
-                    className="hover:text-blue-600 hover:underline underline-offset-2"
-                  >
-                    +234803 704 2960
-                  </Link>
-                </p>
-              </div>
+              </p> */}
             </div>
           </div>
           <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6">
@@ -65,9 +104,9 @@ export default function FooterCom() {
               <Footer.Title title="Connect with Us" />
               <Footer.LinkGroup col>
                 <Footer.Link href="#">Facebook</Footer.Link>
-                <Footer.Link href="#">Twitter</Footer.Link>
+                {/* <Footer.Link href="#">Twitter</Footer.Link> */}
                 <Footer.Link href="#">WhatsApp</Footer.Link>
-                <Footer.Link href="#">YouTube</Footer.Link>
+                {/* <Footer.Link href="#">YouTube</Footer.Link> */}
               </Footer.LinkGroup>
             </div>
           </div>

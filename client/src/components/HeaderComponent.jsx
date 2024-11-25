@@ -135,11 +135,14 @@ export default function HeaderComponent() {
           <Navbar.Link active={path === "/announcements"} as={"div"}>
             <Link to="/announcements">Announcements</Link>
           </Navbar.Link>
-          <Navbar.Link active={path === "/messages"} as={"div"}>
+          {/* <Navbar.Link active={path === "/messages"} as={"div"}>
             <Link to="/messages">Messages</Link>
-          </Navbar.Link>
+          </Navbar.Link> */}
           <Navbar.Link active={path === "/about"} as={"div"}>
             <Link to="/about">About Us</Link>
+          </Navbar.Link>
+          <Navbar.Link active={path === "/contact"} as={"div"}>
+            <Link to="/contact-us">Contact Us</Link>
           </Navbar.Link>
           {/* <Navbar.Link active={path === "/contact-us"} as={"div"}>
             <Link
