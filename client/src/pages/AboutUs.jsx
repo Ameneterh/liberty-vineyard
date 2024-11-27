@@ -37,18 +37,16 @@ export default function AboutUs() {
           <div className="w-full flex flex-wrap justify-between gap-6">
             <div className="w-full md:w-[30%] border rounded-lg p-3 shadow-md flex flex-col gap-4">
               <p className="text-xl">OUR MISSION</p>
-              <h3 className="font-extrabold text-2xl">
-                STRIVING FOR A BETTER TOMORROW
+              <h3 className="font-extrabold text-2xl uppercase">
+                propagating the gospel
               </h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum.
+                To propagate the gospel through preaching and teaching the Word
+                of God with the sole aim of building and expanding the body of
+                Christ.
               </p>
             </div>
-            <div className="w-full md:w-[30%] border rounded-lg p-3 shadow-md flex flex-col gap-4">
+            {/* <div className="w-full md:w-[30%] border rounded-lg p-3 shadow-md flex flex-col gap-4">
               <p className="text-xl">OUR VISION</p>
               <h3 className="font-extrabold text-2xl">
                 STRIVING FOR A BETTER TOMORROW
@@ -60,18 +58,18 @@ export default function AboutUs() {
                 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
                 in reprehenderit in voluptate velit esse cillum.
               </p>
-            </div>
+            </div> */}
             <div className="w-full md:w-[30%] border rounded-lg p-3 shadow-md flex flex-col gap-4">
               <p className="text-xl">WHAT WE DO</p>
-              <h3 className="font-extrabold text-2xl">
-                BRINGING PEACE AND JOY TO THE WORLD
+              <h3 className="font-extrabold text-2xl uppercase">
+                by all means, reach all
               </h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum.
+                In addition to the major responsibility of preaching and
+                teaching the Word of God, we also engage in other spiritual
+                activities. These include Water Baptism, Holy Ghost Baptism,
+                Wedding, Guidance and Counselling, Deliverance, etc. The
+                ministry also publishes books and digests.
               </p>
             </div>
           </div>

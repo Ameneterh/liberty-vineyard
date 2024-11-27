@@ -53,7 +53,7 @@ export default function Home() {
             <div className="flex flex-col w-full  gap-4">
               <div className="w-10 h-10 rounded-full bg-black"></div>
               <h1 className="uppercase text-2xl font-bold">about us</h1>
-              <p className="line-clamp-6">
+              <p className="line-clamp-5">
                 Liberty Vineyard Ministry, a relatively young but vibrant and
                 growing church has a publishing arm (Vineyard Publications) in
                 addition to the traditional role of dispensing the Word which
@@ -80,15 +80,15 @@ export default function Home() {
               <div className="w-10 h-10 rounded-full bg-black"></div>
               <h1 className="uppercase text-2xl font-bold">get involved</h1>
               <p className="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deserunt tempore accusantium recusandae est aspernatur eaque
-                eligendi, cupiditate, voluptate fugiat deleniti repellat
-                eveniet. Delectus quo quis quidem nostrum illum sit id.
+                The easy and more reliable means to get involved is by joining
+                any of our churches to fellowship constantly and also
+                participate in church activities and commitments.
               </p>
               <Button
                 className="uppercase"
                 outline
                 gradientDuoTone="purpleToPink"
+                onClick={() => navigate("/about")}
               >
                 find out how
               </Button>
