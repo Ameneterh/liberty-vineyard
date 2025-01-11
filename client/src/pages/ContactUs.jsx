@@ -33,12 +33,9 @@ export default function ContactUs() {
 
       <div className="w-full max-w-4xl mx-auto mt-4 md:mt-12 p-3 flex flex-col-reverse md:flex-row gap-8 items-center">
         <div className="flex flex-col gap-6 flex-1">
-          <p className="font-extrabold flex gap-2">
-            Address:
-            <span className="font-normal capitalize">
-              opp holy child secondary school, ado-ikere road, ajilosun,
-              ado-ekiti, ekiti state, nigeria.
-            </span>
+          <p className="flex gap-2">
+            Address: No 1, Liberty StreetL, by Federal Housing Estate,
+            <br /> Karatudu, Goni Gora, Kaduna, Kaduna State.
           </p>
           <p className="font-extrabold flex gap-2">
             Contact Details:
@@ -47,14 +44,14 @@ export default function ContactUs() {
                 to="tel:2348030637978"
                 className="hover:text-blue-600 hover:underline underline-offset-2"
               >
-                +2348030637978
+                +2348037042960
               </Link>
               <br />
               <Link
                 to="mailto:clcthehouseofglory1"
                 className="hover:text-blue-600 hover:underline underline-offset-2"
               >
-                clcthehouseofglory1@email.com
+                libertyvineyard@gmail.com
               </Link>
             </span>
           </p>
@@ -62,7 +59,7 @@ export default function ContactUs() {
             Find Us Here:
             <span className="flex gap-3 items-center">
               <Link
-                to="https://www.youtube.com/@clcadoekiti_thehouseofglory"
+                to="https://www.youtube.com/"
                 target="_blank"
                 rel="noreferrer"
               >
