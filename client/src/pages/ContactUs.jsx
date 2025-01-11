@@ -78,7 +78,7 @@ export default function ContactUs() {
           </p>
         </div>
 
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 w-full">
           <p className="text-2xl font-extrabold uppercase mb-4">contact form</p>
           <form
             onSubmit={(ev) => ev.target.reset()}

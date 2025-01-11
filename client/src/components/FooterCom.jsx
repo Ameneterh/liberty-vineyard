@@ -28,7 +28,7 @@ export default function FooterCom() {
               </span>
             </Link>
             <div className="flex md:flex-col h-full gap-2 px-2 py-4 w-[450px]">
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 {/* headquarters address */}
                 <div className="flex flex-col gap-3 items-start flex-1">
                   <div className="text-sm text-slate-800 dark:text-slate-200">
